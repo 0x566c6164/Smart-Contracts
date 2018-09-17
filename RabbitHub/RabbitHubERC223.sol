@@ -37,6 +37,9 @@ pragma solidity ^0.4.24;
 	https://rabbithub.io  https://rabbithub.io  https://rabbithub.io  https://rabbithub.io
 
   AUDITED WITH <3 by independent third party: 8 ฿ł₮ ₮Ɽł₱
+  ***********************************
+  **a Proof of Weak Hands 3D Clone.**
+  ***********************************
 
  */
 
