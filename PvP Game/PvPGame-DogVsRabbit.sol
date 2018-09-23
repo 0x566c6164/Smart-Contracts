@@ -2,7 +2,7 @@ pragma solidity ^0.4.24;
 
 
 /*============================================================
-=            HIGH RISK - GUARANTED REWARD GAME               =
+=            HIGH RISK - GUARANTEED REWARD GAME               =
 ==============================================================
     Rules:
     [X] Maximum 30 unique addresses per round
