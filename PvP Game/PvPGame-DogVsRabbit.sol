@@ -56,7 +56,7 @@ contract PvPGame {
    =            DATASETS            =
    ================================*/
    mapping(address => uint256) internal addressKeyCount;
-   mapping(address => bool) internal keyOwners;
+   address[] internal keyOwners;
    uint256 public totalKeys = 0;
    uint256 public roundId = 0;
    uint256 public endTime;
@@ -101,7 +101,8 @@ contract PvPGame {
 
           moneyPot = moneyPot.add(_incomingEthereum);
           totalKeys = totalKeys.add(_keysBought);
-          keyOwners[msg.sender] = true;
+          // Checks if the address exists or not and writes it to owner array if it doesn't.
+          writeToOwners();
 
           emit onKeyPurchase(msg.sender, _keysBought);
 
@@ -116,7 +117,8 @@ contract PvPGame {
           moneyPot = moneyPot.add(SafeMath.mul(freeKeys, keyPrice));
           totalKeys = totalKeys.add(freeKeys);
           emit onKeyPurchase(msg.sender, freeKeys);
-          keyOwners[msg.sender] = true;
+          // Checks if the address exists or not and writes it to owner array if it doesn't.
+          writeToOwners();
         }
     }
 
@@ -131,7 +133,7 @@ contract PvPGame {
 
     function nextRound() private {
         //ROLL!
-        _winnerIndex = random(totalKeys);
+        _winnerIndex = random();
 
         // Get winner index inside array of addresses
         uint sumCounter = 0;
@@ -191,6 +193,21 @@ contract PvPGame {
         if ((endTime - now) < endTime) {
             return (endTime - now);
         } else return (0);
+    }
+    
+    function writeToOwners() private {
+        // Conditional check if the address already exists in the owners or not, if it does, don't add him to keyOwners array
+        // just update his key ammount.
+          bool exists = false;
+          for(uint i = 0; i < keyOwners.length; i++) {
+              if(keyOwners[i] == msg.sender) {
+                  exists = true;
+              }
+          }
+          // only if address doesn't exist
+          if(!exists) {
+              keyOwners.push(msg.sender);
+          }
     }
 
      // In case one of us dies, we need to replace ourselves.
