@@ -1,5 +1,6 @@
 # RabbitHub ERC223 Dividend Token
 A heavily modified P3D clone which launched on https://rabbithub.io<br/>
+(Rehosted at http://rabbithub.surge.sh/)<br/>
 as a ERC223 dividend based token.<br/>
 [Contract address](https://etherscan.io/address/0xfde889c9354d09cec72845e76a0d9f97f4686f7a)
 
